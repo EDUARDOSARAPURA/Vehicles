@@ -34,7 +34,7 @@ if bar_button:  # al hacer clic en el botón
     st.write(
         'Creación de un grafico de barras para el conjunto de datos de anuncios de venta de coches')
     # crear un grafico de dispercion
-    fig3 = px.bar(long_df, x="model_year", y="count", color="condition",
-                  title="Cantidad de vehiculos por año y condicion")
+    fig3 = px.bar(car_data, x="model_year", y=car_data["price"].count(
+    ), color="condition", title="Cantidad de vehiculos por año y condicion")
     # mostrar un gráfico Plotly interactivo
     fig3.show()
