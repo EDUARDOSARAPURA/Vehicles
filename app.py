@@ -5,7 +5,8 @@ import streamlit as st
 car_data = pd.read_csv('vehicles_us.csv')  # leer los datos
 st.header('Graficos de datos de los Vehiculos')
 hist_button = st.checkbox('Construir histograma')  # crear un botón
-long_df = px.data.medals_long('vehicles_us.csv')
+group = car_data.groupby(["condition", "model_year"])["price"].count()
+group = group.reset_index().rename(columns={"price": "qty"})
 
 if hist_button:  # al hacer clic en el botón
     # escribir un mensaje
@@ -34,7 +35,7 @@ if bar_button:  # al hacer clic en el botón
     st.write(
         'Creación de un grafico de barras para el conjunto de datos de anuncios de venta de coches')
     # crear un grafico de dispercion
-    fig3 = px.bar(car_data, x="model_year", y=car_data["price"].count(
-    ), color="condition", title="Cantidad de vehiculos por año y condicion")
+    fig3 = px.bar(group, x="model_year", y="qty", color="condition",
+                  title="Cantidad de vehiculos por condicion y año")
     # mostrar un gráfico Plotly interactivo
     fig3.show()
