@@ -38,4 +38,4 @@ if bar_button:  # al hacer clic en el botón
     fig3 = px.bar(group, x="model_year", y="qty", color="condition",
                   title="Cantidad de vehiculos por condicion y año")
     # mostrar un gráfico Plotly interactivo
-    fig3.show()
+    st.plotly_chart(fig3, use_container_width=True)
